@@ -1,0 +1,229 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| database1          |
+| database2          |
+| database3          |
+| database4          |
+| database5          |
+| database6          |
+| hello_db           |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+11 rows in set (0.15 sec)
+
+mysql> create database Project
+    -> ;
+Query OK, 1 row affected (0.16 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| Project            |
+| database1          |
+| database2          |
+| database3          |
+| database4          |
+| database5          |
+| database6          |
+| hello_db           |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+12 rows in set (0.00 sec)
+
+mysql> use Project
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table ORGANIZATION(Organization_Name varchar(20) not null,Organization_ID int,Organization_Phone varchar(20) not null,primary key(Organization_ID));
+Query OK, 0 rows affected (1.09 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_Project |
++-------------------+
+| ORGANIZATION      |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> create table ANIMALS(Animal_Name varchar(20));
+Query OK, 0 rows affected (0.26 sec)
+
+mysql> create table BREED(Animal_Name varchar(20),Breed_Name varchar(20),foreign key(Animal_Name) references ANIMALS(Animal_Name),primary key(Breed_Name));
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> drop table ANIMALS
+    -> ;
+Query OK, 0 rows affected (0.98 sec)
+
+mysql> create table ANIMAL(Animal_Name varchar(20),primary key(Animal_Name));
+Query OK, 0 rows affected (1.61 sec)
+
+mysql> create table BREED(Animal_Name varchar(20),Breed_Name varchar(20),foreign key(Animal_Name) references ANIMALS(Animal_Name),primary key(Breed_Name));
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> create table BREED(Animal_Name varchar(20),Breed_Name varchar(20),foreign key(Animal_Name) references ANIMAL(Animal_Name),primary key(Breed_Name));
+Query OK, 0 rows affected (1.35 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_Project |
++-------------------+
+| ANIMAL            |
+| BREED             |
+| ORGANIZATION      |
++-------------------+
+3 rows in set (0.00 sec)
+
+mysql> create table ORG_HAS_ANIMAL(Organization_ID int,Breed_Name varchar(20),Total_Strength int,primary key(Organization_ID,Breed_Name),foreign key(Organization_ID) references ORGANIZATION(Organization_ID),foreign key(Breed_Name) references BREED(Breed_Name));
+Query OK, 0 rows affected (0.67 sec)
+
+mysql> create table CITIZEN(Citizen_Name varchar(20),Citizen_ID int,Number_Of_Contributions int,primary key(Citizen_ID));
+Query OK, 0 rows affected (0.67 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_Project |
++-------------------+
+| ANIMAL            |
+| BREED             |
+| CITIZEN           |
+| ORGANIZATION      |
+| ORG_HAS_ANIMAL    |
++-------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table DONATES(Citizen_ID int,Breed_Name varchar(20),Animal_Name varchar(20),Total_Number int,primary key(Citizen_ID,Breed_Name),foreign key(Citizen_ID) references CITIZEN(Citizen_ID) on delete cascade,foreign key(Breed_Name) on delete cascade);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on delete cascade)' at line 1
+mysql> create table DONATES(Citizen_ID int,Breed_Name varchar(20),Animal_Name varchar(20),Total_Number int,primary key(Citizen_ID,Breed_Name),foreign key(Citizen_ID) references CITIZEN(Citizen_ID) on delete cascade,foreign key(Breed_Name) references BREED(Breed_Name) on delete cascade);
+Query OK, 0 rows affected (0.85 sec)
+
+mysql> 
+mysql> 
+mysql> create table ORG_HAS_ANIMAL(Organization_ID int,Breed_Name varchar(20),Total_Strength int,primary key(Organization_ID,Breed_Name),foreign key(Organization_ID) references ORGANIZATION(Organization_ID) on delete cascade,foreign key(Breed_Name) references BREED(Breed_Name) on delete cascade);
+ERROR 1050 (42S01): Table 'ORG_HAS_ANIMAL' already exists
+mysql> drop table ORG_HAS_ANIMAL;
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> create table ORG_HAS_ANIMAL(Organization_ID int,Breed_Name varchar(20),Total_Strength int,primary key(Organization_ID,Breed_Name),foreign key(Organization_ID) references ORGANIZATION(Organization_ID) on delete cascade,foreign key(Breed_Name) references BREED(Breed_Name) on delete cascade);
+Query OK, 0 rows affected (0.28 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_Project |
++-------------------+
+| ANIMAL            |
+| BREED             |
+| CITIZEN           |
+| DONATES           |
+| ORGANIZATION      |
+| ORG_HAS_ANIMAL    |
++-------------------+
+6 rows in set (0.00 sec)
+
+mysql> create table AREA(Area_Name varchar(20),Area_ID int,primary key(Area_ID));
+Query OK, 0 rows affected (0.52 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_Project |
++-------------------+
+| ANIMAL            |
+| AREA              |
+| BREED             |
+| CITIZEN           |
+| DONATES           |
+| ORGANIZATION      |
+| ORG_HAS_ANIMAL    |
++-------------------+
+7 rows in set (0.01 sec)
+
+mysql> alter table CITIZEN modify Citize_ID Citizen_ID varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Citizen_ID varchar(20)' at line 1
+mysql> alter table CITIZEN modify Citize_ID int Citizen_ID varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Citizen_ID varchar(20)' at line 1
+mysql> alter table CITIZEN modify Citizen_ID Citizen_ID varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Citizen_ID varchar(20)' at line 1
+mysql> alter table CITIZEN update Citizen_ID varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'update Citizen_ID varchar(20)' at line 1
+mysql> alter table CITIZEN rename Citizen_ID varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar(20)' at line 1
+mysql> alter table CITIZEN change Citizen_ID varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar(20)' at line 1
+mysql> alter table CITIZEN modify Citizen_ID varchar(20);
+ERROR 1833 (HY000): Cannot change column 'Citizen_ID': used in a foreign key constraint 'DONATES_ibfk_1' of table 'Project.DONATES'
+mysql> drop table DONATES;
+Query OK, 0 rows affected (0.99 sec)
+
+mysql> alter table CITIZEN modify Citizen_ID varchar(20);
+Query OK, 0 rows affected (2.41 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table DONATES(Citizen_ID varchar(20),Breed_Name varchar(20),Animal_Name varchar(20),Total_Number int,primary key(Citizen_ID,Breed_Name),foreign key(Citizen_ID) references CITIZEN(Citizen_ID) on delete cascade,foreign key(Breed_Name) references BREED(Breed_Name) on delete cascade);
+Query OK, 0 rows affected (0.61 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_Project |
++-------------------+
+| ANIMAL            |
+| AREA              |
+| BREED             |
+| CITIZEN           |
+| DONATES           |
+| ORGANIZATION      |
+| ORG_HAS_ANIMAL    |
++-------------------+
+7 rows in set (0.00 sec)
+
+mysql> drop table DONATES;
+Query OK, 0 rows affected (1.09 sec)
+
+mysql> create table DONATES(Citizen_ID varchar(20),Breed_Name varchar(20),Total_Number int,primary key(Citizen_ID,Breed_Name),foreign key(Citizen_ID) references CITIZEN(Citizen_ID) on delete cascade,foreign key(Breed_Name) references BREED(Breed_Name) on delete cascade);
+Query OK, 0 rows affected (0.47 sec)
+
+mysql> drop table AREA;
+Query OK, 0 rows affected (0.47 sec)
+
+mysql> create table AREA(Area_Name varchar(20),Pin_Code varchar(20),primary key(Pin_Code));
+Query OK, 0 rows affected (0.41 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_Project |
++-------------------+
+| ANIMAL            |
+| AREA              |
+| BREED             |
+| CITIZEN           |
+| DONATES           |
+| ORGANIZATION      |
+| ORG_HAS_ANIMAL    |
++-------------------+
+7 rows in set (0.00 sec)
+
+mysql> create table REPORT(Citizen_ID varchar(20),Breed_Name varchar(20),Pin_Code varchar(20),LandMark varchar(20),primary key(Citizen_ID,Breed_Name,Pin_Code),foreign key(Citizen_ID) references CITIZEN(Citizen_ID) on delete cascade,foreign key(Breed_Name) references BREED(Breed_Name) on delete cascade,foreign key(Pin_Code) references AREA(Pin_Code) on delete cascade);
+Query OK, 0 rows affected (0.34 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_Project |
++-------------------+
+| ANIMAL            |
+| AREA              |
+| BREED             |
+| CITIZEN           |
+| DONATES           |
+| ORGANIZATION      |
+| ORG_HAS_ANIMAL    |
+| REPORT            |
++-------------------+
+8 rows in set (0.00 sec)
+

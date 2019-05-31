@@ -1,0 +1,121 @@
+header {
+  background: #999999;
+}
+h1{
+  color : #000000;
+  text-align: center;
+  text-transform: uppercase ;
+}
+a{
+  background :#BBBBBB;
+  color : #000000;
+}
+aside{
+  display:none;
+}
+section{
+  background: #666666;
+}
+h2{
+  text-align: left;
+  color : #0000FF;
+  text-transform: uppercase ;  
+}
+p{
+  text-size: large;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#one {
+    border-style: solid;
+    border-width: 5px;
+    padding: 5px;
+    border-color: yellow;
+    margin: 5px;
+    width:25%;
+    height:35.3%;
+    position: absolute;
+    left:7.35%;  
+    top:10%;
+}
+#two {
+    border-style: solid;
+    border-width: 5px;
+    padding: 5px;
+    border-color: orange;
+    margin: 5px;
+    width:25%;
+    position: absolute;
+    height:35.3%;
+    left:35%;  
+    top:10%;
+}
+#three {
+    border-style: solid;
+    border-width: 5px;
+    padding: 5px;
+    border-color: blue;
+    margin: 5px;
+    width:25%;
+    position: absolute;
+    height:35.3%;
+    right:10%;  
+    bottom:10%;
+}
+#four {
+    border-style: solid;
+    border-width: 5px;
+    padding: 5px;
+    border-color: green;
+    margin: 5px;
+    width: 25%;
+    position: absolute;
+    height:35.3%;
+    right: 10%;
+    top:10%;
+}
+#five {
+    border-style: solid;
+    border-width: 5px;
+    padding: 5px;
+    border-color: black;
+    margin: 5px;
+    width:25%;
+    position: absolute;
+    height:35.3%;
+    left:35%;  
+    top:50%;
+}
+#six {
+    border-style: solid;
+    border-width: 5px;
+    padding: 5px;
+    border-color: pink;
+    margin: 5px;
+    width:25%;
+    position: absolute;
+    height:35.3%;
+    left:7.35%;  
+    top:50%;
+}
+
+
+#link {
+    text-align:center;
+    background:#0000ff;  
+    margin:0% 45% 100% 45%; 
+}
+a{
+   color: white!important;
+   font-weight:bold;
+   text-decoration:none;
+   font-size:20px;
+}
+
+
+
+
+
+ 

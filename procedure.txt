@@ -1,0 +1,2 @@
+create procedure P(in CitizenID varchar(20),in CitizenName varchar(20)) begin case when not exists(select * from CITIZEN where Citizen_ID=CitizenID) then insert into CITIZEN values(CitizenName,CitizenID,0); else begin end; end case; end;|
+

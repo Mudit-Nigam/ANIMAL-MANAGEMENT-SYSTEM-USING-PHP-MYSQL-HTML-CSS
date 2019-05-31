@@ -1,0 +1,35 @@
+#a {
+    border: 5px inset ;
+    padding: 15px;
+    border-color: red;
+}
+#b {
+    border: 5px inset ;
+    padding: 15px;
+    border-color: blue;
+}
+#c {
+    border: 5px inset ;
+    padding: 15px;
+    border-color: green;
+}
+.center {
+    margin: auto;
+    width: 20%;
+    border: 3px outset ;
+    padding: 10px;
+    border-color: black;
+}
+.center1 {
+    margin: auto;
+    width: 60%;
+    border: 3px outset ;
+    padding: 10px;
+    border-color: black;
+}
+body{
+  background-image: url("1920x1080-BXpisL.jpg");
+  background-repeat: no-repeat;
+  background-size : 100% 750px;
+
+}

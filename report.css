@@ -1,0 +1,74 @@
+input {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid red;
+    border-radius: 4px;
+    background-color: #3CBC8D;
+    color: white;
+    font-size: 20px;
+}
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+div {
+    height: 720px;
+    width: 100%;
+    background-color: powderblue;
+}
+.bgimg1 {
+    background-color: #ccc;
+    background-image: url("REPORT1.jpg");
+    background-repeat : no-repeat;
+    background-size : 100% 700px;
+    position: absolute;
+    color: BLACK;
+    font-size: 30px;
+
+}
+.bgimg2 {
+    background-color: #ccc;
+    background-image: url("REPORT2.jpg");
+    background-repeat : no-repeat;
+    background-size : 100% 700px;
+    position: absolute;
+    color: WHITE;
+    font-size: 30px;
+
+}
+.bgimg3 {
+    background-color: #ccc;
+    background-image: url("REPORT3.jpg");
+    background-repeat : no-repeat;
+    background-size : 100% 700px;
+    position: absolute;
+    color: WHITE;
+    font-size: 30px;
+}
+.bgimg4 {
+    background-color: #ccc;
+    background-image: url("REPORT4.jpg");
+    background-repeat : no-repeat;
+    background-size : 100% 720px;
+    position: absolute;
+    color: black;
+    font-size: 30px;
+}
+.center1 {
+    margin: auto;
+    width: 96%;
+    border: 3px outset ;
+    padding: 10px;
+    border-color: black;
+    height: 10%;
+
+}
