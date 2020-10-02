@@ -16,7 +16,7 @@ $sql = "INSERT INTO ANIMAL VALUES ('DOG'),('CAT'),('COW'),('RAT'),('TORTOISE'),(
 
 
 if ($conn->query($sql) === TRUE){
-    echo "New record created successfully";
+    echo "New record created ";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
